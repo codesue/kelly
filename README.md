@@ -36,6 +36,7 @@ Keywords for Language Learning for Young and adults alike
   - [Data Instances](#data-instances)
   - [Data Fields](#data-fields)
   - [Data Splits](#data-splits)
+- [Dataset Creation](#dataset-creation)
 - [Additional Information](#additional-information)
   - [Licensing Information](#licensing-information)
   - [Citation Information](#citation-information)
@@ -50,14 +51,9 @@ Keywords for Language Learning for Young and adults alike
 
 The Swedish Kelly list is a freely available frequency-based vocabulary list
 that comprises general-purpose language of modern Swedish. The list was
-generated from a large web-acquired corpus (SweWAC) of 114 million words
+generated from a large web-acquired corpus (SweWaC) of 114 million words
 dating from the 2010s. It is adapted to the needs of language learners and
-contains 8,425 most frequent lemmas that cover 80% of SweWAC.
-
-Please refer to the article [Corpus-based approaches for the creation of a frequency
-based vocabulary list in the EU project KELLY – issues on reliability, validity and
-coverage](https://gup.ub.gu.se/publication/148533?lang=en) for information about how
-the dataset was created.
+contains 8,425 most frequent lemmas that cover 80% of SweWaC.
 
 ### Languages
 
@@ -71,7 +67,7 @@ Here is a sample of the data:
 
 ```python
 {
-    'id': '190',
+    'id': 190,
     'raw_frequency': 117835.0,
     'relative_frequency': 1033.61,
     'cefr_level': 'A1',
@@ -96,11 +92,11 @@ phrase "god dag" ("good day").
 
 - `id`: The row number for the data entry, starting at 1. Generally corresponds
   to the rank of the word.
-- `raw_frequency`: The raw frequency of the word or -1.0 if not available.
+- `raw_frequency`: The raw frequency of the word.
 - `relative_frequency`: The relative frequency of the word measured in
-  number of occurences per million words or -1.0 if not available.
+  number of occurences per million words.
 - `cefr_level`: The CEFR level (A1, A2, B1, B2, C1, C2) of the word.
-- `source`: Whether the word came from SweWAC, translation lists (T2), or
+- `source`: Whether the word came from SweWaC, translation lists (T2), or
   was manually added (manual).
 - `marker`: The grammatical marker of the word, if any, such as an article or
   infinitive marker.
@@ -115,11 +111,23 @@ has a rank of 20, while the first non-manual entry "och" ("and") has a rank of
 87. However, a conjunction and common stopword is far more likely to occur than
 the name of a city.
 
-Additionally, manually entries hav a recoreded relative frequency of `1000000`.
-
 ### Data Splits
 
-There is a single split, `train`. 
+There is a single split, `train`.
+
+## Dataset Creation
+
+Please refer to the article [Corpus-based approaches for the creation of a frequency
+based vocabulary list in the EU project KELLY – issues on reliability, validity and
+coverage](https://gup.ub.gu.se/publication/148533?lang=en) for information about how
+the original dataset was created and considerations for using the data.
+
+**The following changes have been made to the original dataset**:
+
+- Changed header names.
+- Normalized the large web-acquired corpus name to "SweWac" in the `source` field.
+- Set the relative frequency of manual entries to null rather than 1000000.
+
 
 ## Additional Information
 

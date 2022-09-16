@@ -25,9 +25,9 @@ journal = {Language Resources and Evaluation}
 _DESCRIPTION = """\
 The Swedish Kelly list is a freely available frequency-based vocabulary list \
 that comprises general-purpose language of modern Swedish. The list was \
-generated from a large web-acquired corpus (SweWAC) of 114 million words \
+generated from a large web-acquired corpus (SweWaC) of 114 million words \
 dating from the 2010s. It is adapted to the needs of language learners \
-and contains 8,425 most frequent lemmas that cover 80% of SweWAC.
+and contains 8,425 most frequent lemmas that cover 80% of SweWaC.\
 """
 
 _HOMEPAGE = "https://spraakbanken.gu.se/en/resources/kelly"
@@ -42,19 +42,19 @@ _URLS = {
 class Kelly(datasets.GeneratorBasedBuilder):
   """Kelly: Keywords for Language Learning for Young and adults alike"""
 
-  VERSION = datasets.Version("1.0.0")
+  VERSION = datasets.Version("1.0.1")
 
   def _info(self):
     features = datasets.Features(
       {
-        "id": datasets.Value("string"),
+        "id": datasets.Value("int32"),
         "raw_frequency": datasets.Value("float64"),
         "relative_frequency": datasets.Value("float64"),
         "cefr_level": datasets.Value("string"),
         "source": datasets.Value("string"),
         "marker": datasets.Value("string"),
         "lemma": datasets.Value("string"),
-        "class": datasets.Value("string"),
+        "pos": datasets.Value("string"),
         "examples": datasets.Value("string"),
       }
     )
@@ -89,12 +89,12 @@ class Kelly(datasets.GeneratorBasedBuilder):
         a, b, c, d, e, f, g, h, i = row
         yield key, {
           "id": a,
-          "raw_frequency": b or "-1",
-          "relative_frequency": c or "-1",
+          "raw_frequency": b or "NaN",
+          "relative_frequency": c or "NaN",
           "cefr_level": d,
           "source": e,
           "marker": f,
           "lemma": g,
-          "class": h,
+          "pos": h,
           "examples": i,
         }
