@@ -45,27 +45,27 @@ class Kelly(datasets.GeneratorBasedBuilder):
   VERSION = datasets.Version("1.0.0")
 
   def _info(self):
-      features = datasets.Features(
-        {
-          "id": datasets.Value("string"),
-          "raw_frequency": datasets.Value("float64"),
-          "relative_frequency": datasets.Value("float64"),
-          "cefr_level": datasets.Value("string"),
-          "source": datasets.Value("string"),
-          "marker": datasets.Value("string"),
-          "lemma": datasets.Value("string"),
-          "class": datasets.Value("string"),
-          "examples": datasets.Value("string"),
-        }
-      )
+    features = datasets.Features(
+      {
+        "id": datasets.Value("string"),
+        "raw_frequency": datasets.Value("float64"),
+        "relative_frequency": datasets.Value("float64"),
+        "cefr_level": datasets.Value("string"),
+        "source": datasets.Value("string"),
+        "marker": datasets.Value("string"),
+        "lemma": datasets.Value("string"),
+        "class": datasets.Value("string"),
+        "examples": datasets.Value("string"),
+      }
+    )
 
-      return datasets.DatasetInfo(
-          description=_DESCRIPTION,
-          features=features,
-          homepage=_HOMEPAGE,
-          license=_LICENSE,
-          citation=_CITATION,
-      )
+    return datasets.DatasetInfo(
+      description=_DESCRIPTION,
+      features=features,
+      homepage=_HOMEPAGE,
+      license=_LICENSE,
+      citation=_CITATION,
+    )
 
   def _split_generators(self, dl_manager):
     data_path = dl_manager.download_and_extract(_URLS["csv"])
